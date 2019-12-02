@@ -1,9 +1,7 @@
-[![Build Status](https://travis-ci.org/liciolentimo/herosquad.svg?branch=master)](https://travis-ci.org/liciolentimo/herosquad)  [![Maintainability](https://api.codeclimate.com/v1/badges/d959262a23f4b2f17640/maintainability)](https://codeclimate.com/github/liciolentimo/herosquad/maintainability)
 ## Author 
 Keith Omware
 ## Organisational-API
-
-
+This is a spark-java api that enables one dispay the data from a database in form of a json object.
 
 ## Installation
 
@@ -12,16 +10,27 @@ Keith Omware
 * Run the tests `gradle test`
 * Launch the app `gradle run`. The app will open on port 4567 on your browser: `localhost:4567`
 
+## HTTP Methods
+
+	|Method|Path|Description|
+	|------|------|------|
+	|`Post`|/departments/new|Creates a new Department|
+	|`Get`|/departments|Fetches all departments|
+	|`Get`|/departments/:id|Fetches departments by id|
+	|`Get`|/departments/:id/news|Fetches department news|
+	|`Post`|/users/new|Creates a new User|
+	|`Get`|/users|Fetches all users|
+	|`Post`|/news/new|Creates news|
+	|`Get`|/news|Fetches all news|
+	
 ## Technologies Used
 ```
 * Java.
 * Spark - the front end framework.
-* Bootstrap - for styling.
 * Postgres database.
 * Postman
 ```
-## Deployment
-Link to live site: 
+
 ## Contact Information
 * Email: keithomware@gmail.com
 * Phone number: 0712759803
