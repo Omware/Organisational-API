@@ -1,7 +1,9 @@
 package dao;
 
-import models.News;
+import models.*;
+import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 
 import java.util.List;
 
@@ -12,31 +14,62 @@ public class sql2oNewsDao implements NewsDao {
     }
     @Override
     public List<News> getAll() {
-        return null;
+        try(Connection con = sql2o.open()){
+            return con.createQuery("SELECT * FROM news")
+                    .executeAndFetch(News.class);
+        }
     }
 
     @Override
     public List<News> getAllNewsByDepartment(int departmentId) {
-        return null;
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM news WHERE departmentid = :departmentid")
+                    .addParameter("departmentId", departmentId)
+                    .executeAndFetch(News.class);
+        }
     }
+
 
     @Override
     public void add(News news) {
-
+        String sql = "INSERT INTO news (content, description, departmentid) VALUES (:content,:description, :departmentid)";
+        try(Connection con = sql2o.open()){
+            int id = (int) con.createQuery(sql, true)
+                    .bind(news)
+                    .executeUpdate()
+                    .getKey();
+            news.setId(id);
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
-
     @Override
     public News findById(int id) {
-        return null;
+        try (Connection con = sql2o.open()) {
+            return con.createQuery("SELECT * FROM news WHERE id = :id")
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(News.class);
+        }
     }
-
     @Override
     public void deleteById(int id) {
-
+        String sql = "DELETE from news WHERE id=:id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
     }
 
     @Override
     public void clearAll() {
-
+        String sql = "DELETE from news";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql).executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 }

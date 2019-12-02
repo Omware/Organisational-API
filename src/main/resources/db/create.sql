@@ -1,22 +1,23 @@
-SET MODE PostgreSQL;
+CREATE DATABASE organisational_api;
+\c organisational_api;
 
 CREATE TABLE IF NOT EXISTS departments (
- id int PRIMARY KEY auto_increment,
- departmentName VARCHAR,
- departmentDescription VARCHAR,
- numberOfEmployees VARCHAR
+ id serial PRIMARY KEY ,
+ departmentname VARCHAR,
+ departmentdescription VARCHAR,
+ numberofemployees int
 );
 
 CREATE TABLE IF NOT EXISTS news (
- id int PRIMARY KEY auto_increment,
+ id serial PRIMARY KEY ,
  content VARCHAR,
  description VARCHAR,
- departmentid INTEGER
+ departmentid int
 );
 
 CREATE TABLE IF NOT EXISTS userName (
- id int PRIMARY KEY auto_increment,
+ id serial PRIMARY KEY ,
  name VARCHAR,
- departmentid INTEGER,
+ departmentid int,
  role VARCHAR
 );

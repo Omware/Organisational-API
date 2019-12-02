@@ -1,7 +1,5 @@
 package dao;
-import models.News;
-import models.Department;
-import models.User;
+import models.*;
 
 import java.util.List;
 
@@ -21,4 +19,6 @@ public interface DepartmentDao {
    // Delete
     void deleteById(int id);
     void clearAll();
+
+    void update(int id, String departmentname, String departmentdescription, int numberofemployees);
 }
