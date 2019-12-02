@@ -1,34 +1,25 @@
 ## Author 
 Keith Omware
 ## Organisational-API
-This is a spark-java api that enables one dispay the data from a database in form of a json object.
+This is a spark-java api that enables one fetch the data from a database in form of a json object.
 
 ## Installation
 
 * Clone the repo: `https://github.com/Omware/Organisational-API.git`
 * Run the command `gradle build`
 * Run the tests `gradle test`
-* Launch the app `gradle run`. The app will open on port 4567 on your browser: `localhost:4567`
+* Launch the app `gradle run`.
 
 ## HTTP Methods
-
-	|Method|Path|Description|
-	|------|------|------|
-	|`Post`|/departments/new|Creates a new Department|
-	|`Get`|/departments|Fetches all departments|
-	|`Get`|/departments/:id|Fetches departments by id|
-	|`Get`|/departments/:id/news|Fetches department news|
-	|`Post`|/users/new|Creates a new User|
-	|`Get`|/users|Fetches all users|
-	|`Post`|/news/new|Creates news|
-	|`Get`|/news|Fetches all news|
 	
+
 ## Technologies Used
 ```
 * Java.
-* Spark - the front end framework.
+* Spark 
 * Postgres database.
 * Postman
+* Junit
 ```
 
 ## Contact Information
