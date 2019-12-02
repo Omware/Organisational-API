@@ -24,7 +24,7 @@ public class sql2oNewsDao implements NewsDao {
     public List<News> getAllNewsByDepartment(int departmentId) {
         try (Connection con = sql2o.open()) {
             return con.createQuery("SELECT * FROM news WHERE departmentid = :departmentid")
-                    .addParameter("departmentId", departmentId)
+                    .addParameter("departmentid", departmentId)
                     .executeAndFetch(News.class);
         }
     }

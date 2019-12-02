@@ -41,15 +41,17 @@ public class sql2oDepartmentDao implements DepartmentDao {
     }
 
     @Override
-    public void add(Department department){
-        String sql = "INSERT INTO departments (departmentname, departmentdescription, numberofemployees) VALUES (:departmentname, :departmentdescription, :numberofemployees);";
-        try(Connection con = sql2o.open()){
+    public void add(Department department) {
+        String sql = "INSERT INTO departments(name,description,numberofemployees) VALUES(:name,:description,:numberofemployees)";
+        try (Connection con = sql2o.open()) {
             int id = (int) con.createQuery(sql, true)
-                    .bind(department)
+                    .addParameter("name",department.getDepartmentName())
+                    .addParameter("description",department.getdepartmentDescription())
+                    .addParameter("numberofemployees",department.getNumberOfEmployees())
                     .executeUpdate()
                     .getKey();
             department.setId(id);
-        } catch(Sql2oException ex){
+        } catch (Sql2oException ex) {
             System.out.println(ex);
         }
     }
@@ -86,18 +88,5 @@ public class sql2oDepartmentDao implements DepartmentDao {
         }
     }
 
-    @Override
-    public void update(int id, String departmentName, String description, int numberofemployees) {
-        String sql = "UPDATE departments SET (departmentname, departmentdescription, numberofemployees) = (:departmentname, :departmentdescription, :numberofemployees) WHERE id=:id";
-        try (Connection con = sql2o.open()) {
-            con.createQuery(sql)
-                    .addParameter("departmentname", departmentName)
-                    .addParameter("departmentdescription", description)
-                    .addParameter("numberofemployees", numberofemployees)
-                    .addParameter("id", id)
-                    .executeUpdate();
-        } catch (Sql2oException ex) {
-            System.out.println(ex);
-        }
-    }
+
 }

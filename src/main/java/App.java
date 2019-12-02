@@ -28,12 +28,10 @@ public class App {
         NewsDao = new sql2oNewsDao(sql2o);
         conn = sql2o.open();
 
-        post("/departments/new", "application/json", (req, res) -> {
-            Department department = gson.fromJson(req.body(), Department.class);
-            System.out.println(department.getDepartmentName());
+        post("/departments/new", "application/json", (request, response) -> {
+            Department department = gson.fromJson(request.body(), Department.class);
             DepartmentDao.add(department);
-            res.status(201);
-            res.type("application/json");
+            response.status(201);
             return gson.toJson(department);
         });
 

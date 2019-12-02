@@ -20,5 +20,4 @@ public interface DepartmentDao {
     void deleteById(int id);
     void clearAll();
 
-    void update(int id, String departmentname, String departmentdescription, int numberofemployees);
 }
