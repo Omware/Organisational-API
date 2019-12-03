@@ -38,10 +38,10 @@ public class App {
         NewsDao = new sql2oNewsDao(sql2o);
 //        conn = sql2o.open();
 
-//        get(("/"), (request, response) -> {
-//            response.redirect("/users");
-//            return null;
-//        });
+        get(("/"), (request, response) -> {
+            response.redirect("/users");
+            return null;
+        });
 
         post("/departments/new", "application/json", (request, response) -> {
             Department department = gson.fromJson(request.body(), Department.class);
