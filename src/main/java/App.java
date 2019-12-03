@@ -27,7 +27,7 @@ public class App {
         sql2oUserDao UserDao;
         sql2oDepartmentDao DepartmentDao;
         sql2oNewsDao NewsDao;
-//        Connection conn;
+        Connection conn;
         Gson gson = new Gson();
 
         staticFileLocation("/public");
@@ -36,7 +36,6 @@ public class App {
         DepartmentDao = new sql2oDepartmentDao(sql2o);
         UserDao = new sql2oUserDao(sql2o);
         NewsDao = new sql2oNewsDao(sql2o);
-//        conn = sql2o.open();
 
         get(("/"), (request, response) -> {
             response.redirect("/users");
