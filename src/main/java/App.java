@@ -31,8 +31,7 @@ public class App {
         Gson gson = new Gson();
 
         staticFileLocation("/public");
-        String connectionString = "jdbc:postgresql://localhost:5432/organisational_api";
-        Sql2o sql2o = new Sql2o(connectionString, "keith", "1234");
+        Sql2o sql2o = DB.sql2o;
         DepartmentDao = new sql2oDepartmentDao(sql2o);
         UserDao = new sql2oUserDao(sql2o);
         NewsDao = new sql2oNewsDao(sql2o);

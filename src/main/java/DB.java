@@ -12,15 +12,18 @@ public class DB {
         try {
             if (System.getenv("DATABASE_URL") == null) {
                 dbUri = new URI("postgres://localhost:5432/organisationalapi");
+                String connectionString = "jdbc:postgresql://localhost:5432/organisational_api";
+                sql2o=new Sql2o(connectionString, "keith", "1234");
             } else {
                 dbUri = new URI(System.getenv("DATABASE_URL"));
+                int port = dbUri.getPort();
+                String host = dbUri.getHost();
+                String path = dbUri.getPath();
+                String username = (dbUri.getUserInfo() == null) ? "Keith" : dbUri.getUserInfo().split(":")[0];
+                String password = (dbUri.getUserInfo() == null) ? "1234" : dbUri.getUserInfo().split(":")[1];
+                sql2o = new Sql2o("jdbc:postgresql://" + host + ":" + port + path, username, password);
             }
-            int port = dbUri.getPort();
-            String host = dbUri.getHost();
-            String path = dbUri.getPath();
-            String username = (dbUri.getUserInfo() == null) ? "Keith" : dbUri.getUserInfo().split(":")[0];
-            String password = (dbUri.getUserInfo() == null) ? "1234" : dbUri.getUserInfo().split(":")[1];
-            sql2o = new Sql2o("jdbc:postgresql://" + host + ":" + port + path, username, password);
+
         } catch (URISyntaxException e ) {
             logger.error("Unable to connect to database.");
         }
