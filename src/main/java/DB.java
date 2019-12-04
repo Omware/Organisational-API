@@ -11,7 +11,7 @@ public class DB {
 
         try {
             if (System.getenv("DATABASE_URL") == null) {
-                dbUri = new URI("postgres://localhost:5432/organisationalapi");
+                dbUri = new URI("jdbc:postgresql://localhost:5432/organisational_api");
                 String connectionString = "jdbc:postgresql://localhost:5432/organisational_api";
                 sql2o=new Sql2o(connectionString, "keith", "1234");
             } else {
