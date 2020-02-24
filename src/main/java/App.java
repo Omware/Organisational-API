@@ -106,20 +106,8 @@ public class App {
             res.type("application/json");
             return gson.toJson(NewsDao.getAll());
         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+        
         //FILTERS
         exception(ApiException.class, (exception, req, res) -> {
             ApiException err = exception;
